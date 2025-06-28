@@ -71,7 +71,7 @@ export default function Hero() {
     <section
       id="hero"
       style={{
-        position: 'fixed',
+        position: 'relative',
         width: '100vw',
         height: isMobile ? '100vh' : '80vh',
         overflow: 'hidden',
@@ -90,7 +90,7 @@ export default function Hero() {
           top: '0px',
           left: 0,
           width: '100%',
-          height: '100%',
+          height: isMobile ? '130%' : '100%',
           objectFit: 'cover',
         }}
       />
