@@ -173,7 +173,13 @@ export default function Header() {
         <div style={{ fontSize: '20px' }}></div>
 
         {!isMobile ? (
-          <div style={{ display: 'flex', gap: '40px', width: '100%', justifyContent: 'center' }}>
+          <div style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            gap: '40px',
+          }}>
             {navItems.map((item) => (
               <div
                 key={item}

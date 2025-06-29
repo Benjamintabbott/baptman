@@ -64,12 +64,19 @@ function truncate(address) {
 
 export default function Chat() {
   const { connected, account } = useWallet();
-
+  const [isMobile, setIsMobile] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [hasAccess, setHasAccess] = useState(false);
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1000);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Check Baptman token ownership on connect/account change
   useEffect(() => {
@@ -167,23 +174,22 @@ export default function Chat() {
   return (
     <section
       style={{
-        margin: '80px auto',
-        maxWidth: '600px',
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        width: '90%',
+        height: '100%',
         padding: '20px',
         borderRadius: '12px',
-        boxShadow: '0 0 20px rgba(0,0,0,0.8)',
         color: 'white',
-        fontFamily: 'Impact, sans-serif',
+        fontFamily: '"Trebuchet MS", sans-serif',
+        alignItems: 'center',
       }}
     >
-      <h2 style={{ textAlign: 'center', fontSize: '24px', marginBottom: '10px' }}>
+      <h2 style={{ textAlign: 'center', fontSize: '3.5rem', marginBottom: '10px', fontFamily: 'Impact, sans-serif', }}>
         Community Chat
       </h2>
 
       <div
         style={{
-          height: '400px',
+          height: '500px',
           overflowY: 'auto',
           border: '1px solid rgba(255,255,255,0.2)',
           borderRadius: '8px',
@@ -230,7 +236,7 @@ export default function Chat() {
             border: '1px solid rgba(255,255,255,0.2)',
             backgroundColor: inputDisabled ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.1)',
             color: 'white',
-            fontFamily: 'Impact, sans-serif',
+            fontFamily: '"Trebuchet MS", sans-serif',
             cursor: inputDisabled ? 'not-allowed' : 'text',
           }}
           aria-label="Message input"
